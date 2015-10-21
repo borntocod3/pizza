@@ -11,12 +11,14 @@
 #import "YLGIFImage.h"
 #import "ActionSheet.h"
 #import "Scene.h"
+#import "QRReaderViewController.h"
 #import "HoloViewController.h"
 #import "FireworkViewController.h"
 #import "SnowViewController.h"
+#import "AlertView.h"
 @import SpriteKit;
 
-@interface ViewController ()
+@interface ViewController () <QRReaderDelegate>
 
 @property (nonatomic, weak) IBOutlet YLImageView *imageView;
 @property (nonatomic, weak) IBOutlet UIButton *orderButton;
@@ -77,18 +79,39 @@
 {
     ActionSheet *action = [[ActionSheet alloc] initWithTitle:@"選択してください。" completion:^(NSInteger buttonIndex) {
         if (buttonIndex == 1) {
+            QRReaderViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"QRReaderViewController"];
+            vc.delegate = self;
+            [self presentViewController:vc animated:YES completion:nil];
+        } else if (buttonIndex == 2) {
             HoloViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HoloViewController"];
             vc.holoFileName = @"pikachu.gif";
             [self.navigationController pushViewController:vc animated:YES];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 3) {
             FireworkViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FireworkViewController"];
             [self.navigationController pushViewController:vc animated:YES];
-        } else if (buttonIndex == 2) {
+        } else if (buttonIndex == 4) {
             SnowViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SnowViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         }
-    } cancelButtonTitle:@"キャンセル" destructiveButtonTitle:nil otherButtonTitles:@"ホログラム", @"夏", @"冬", nil];
+    } cancelButtonTitle:@"キャンセル" destructiveButtonTitle:nil otherButtonTitles:@"QRコードリーダー", @"ホログラム", @"夏", @"冬", nil];
     [action showInView:self.view];
+}
+
+
+#pragma mark - QRCodeReader Delegate Methods
+
+- (void)reader:(QRReaderViewController *)reader didScanResult:(NSString *)result
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        AlertView *alert = [[AlertView alloc] initWithTitle:@"URL検知しました" message:@"ホログラムを表示しますか？" completion:^(NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                HoloViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HoloViewController"];
+                vc.holoFileName = @"pikachu.gif";
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        } cancelButtonTitle:@"キャンセル" otherButtonTitles:@"OK", nil];
+        [alert show];
+    }];
 }
 
 @end
