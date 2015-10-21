@@ -1,9 +1,17 @@
 package jp.net.minato.pizzasample;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class QRReaderActivity extends Activity {
@@ -12,7 +20,20 @@ public class QRReaderActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrreader);
+        new IntentIntegrator(QRReaderActivity.this).initiateScan();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scannedResutlt = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if(scannedResutlt != null){
+            String re = scannedResutlt.getContents();
+            Intent holoGram = new Intent(QRReaderActivity.this,HologramActivity.class);
+            holoGram.putExtra("qr_resutl",re);
+            startActivity(holoGram);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
