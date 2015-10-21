@@ -5,24 +5,35 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
 
 public class HologramActivity extends Activity {
     private AlertDialog yesNoDialog;
+    private WebView mWebView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String qrURl = getIntent().getExtras().getString("qr_resutl");
+        final String qrURl = getIntent().getExtras().getString("qr_resutl");
         AlertDialog.Builder yesNO = new AlertDialog.Builder(HologramActivity.this);
         yesNO.setMessage(qrURl).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 setContentView(R.layout.activity_hologram);
+                mWebView = (WebView) findViewById(R.id.wvElement);
+                //mWebView.loadUrl(qrURl);
+                String data ="<body style=\"width:100%;height:100%;padding:0px;margin:0px;\"><img style=\"width:100%;height:100%;padding:0px;margin:0px;\" src=\"pikachu.gif\"/></body>";
+                mWebView.loadDataWithBaseURL("file:///android_asset/",data,"text/html","utf-8",null);
+
                 dialogInterface.dismiss();
+
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
@@ -65,5 +76,6 @@ public class HologramActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         yesNoDialog.dismiss();
+        yesNoDialog.hide();
     }
 }

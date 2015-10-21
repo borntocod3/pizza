@@ -28,9 +28,14 @@ public class QRReaderActivity extends Activity {
         IntentResult scannedResutlt = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if(scannedResutlt != null){
             String re = scannedResutlt.getContents();
-            Intent holoGram = new Intent(QRReaderActivity.this,HologramActivity.class);
-            holoGram.putExtra("qr_resutl",re);
-            startActivity(holoGram);
+            //check if there is really a result
+            if(re != null){
+                Log.e("james",re);
+                Intent holoGram = new Intent(QRReaderActivity.this,HologramActivity.class);
+                holoGram.putExtra("qr_resutl",re);
+                startActivity(holoGram);
+            }
+
         }
     }
 
@@ -55,5 +60,10 @@ public class QRReaderActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
