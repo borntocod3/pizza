@@ -5,7 +5,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="jp.net.minato.pizzasample.HologramActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/logo"/>
     <WebView
         android:id="@+id/wvElement"
         android:layout_width="match_parent"

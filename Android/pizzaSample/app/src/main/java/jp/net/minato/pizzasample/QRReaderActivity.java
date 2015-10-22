@@ -17,6 +17,15 @@ import com.google.zxing.integration.android.IntentResult;
 public class QRReaderActivity extends Activity {
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent = new Intent(QRReaderActivity.this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrreader);
@@ -30,15 +39,25 @@ public class QRReaderActivity extends Activity {
             String re = scannedResutlt.getContents();
             //check if there is really a result
             if(re != null){
-                Log.e("james",re);
+                Log.e("james", re);
                 Intent holoGram = new Intent(QRReaderActivity.this,HologramActivity.class);
                 holoGram.putExtra("qr_resutl",re);
+                holoGram.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(holoGram);
+                finish();
             }
 
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(QRReaderActivity.this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,5 +84,6 @@ public class QRReaderActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        finish();
     }
 }
