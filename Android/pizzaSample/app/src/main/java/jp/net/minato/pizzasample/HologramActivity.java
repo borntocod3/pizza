@@ -28,7 +28,6 @@ public class HologramActivity extends Activity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 setContentView(R.layout.activity_hologram);
                 mWebView = (WebView) findViewById(R.id.wvElement);
-                //mWebView.loadUrl(qrURl);
                 String data ="<body style=\"width:100%;height:100%;padding:0px;margin:0px;\"><img style=\"width:100%;height:100%;padding:0px;margin:0px;\" src=\"pikachu.gif\"/></body>";
                 mWebView.loadDataWithBaseURL("file:///android_asset/",data,"text/html","utf-8",null);
 

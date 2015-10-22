@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -14,12 +15,16 @@ import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends Activity{
+    private WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mWebView = (WebView) findViewById(R.id.gif_animation);
+        String data ="<body style=\"width:100%;height:100%;padding:0px;margin:0px;\"><img style=\"width:100%;height:100%;padding:0px;margin:0px;\" src=\"pizza.gif\"/></body>";
+        mWebView.loadDataWithBaseURL("file:///android_asset/", data, "text/html", "utf-8", null);
 
         Button qrScanner = (Button) findViewById(R.id.btnStartScanner);
         qrScanner.setOnClickListener(new View.OnClickListener() {
