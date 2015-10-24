@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "jp.net.minato.pizzasample"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -15,6 +16,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = ["libs"]
         }
     }
 }
@@ -29,7 +36,7 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
     // Supports Android 4.0.3 and later (API level 15)
     compile 'com.embarkmobile:zxing-android-minimal:2.0.0@aar'
 
@@ -49,4 +56,8 @@ dependencies {
 
     //DialogPlus
     compile 'com.orhanobut:dialogplus:1.10@aar'
+
+    // Android Engine and Box2d for Android Engine Extension
+    compile project(':andEngine')
+    compile project(':andEnginePhysicsBox2DExtension')
 }

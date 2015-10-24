@@ -51,7 +51,7 @@ public class MainActivity extends Activity{
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent snowFall = new Intent(MainActivity.this,SnowFallActivity.class);
+                Intent snowFall = new Intent(MainActivity.this,SnowFall.class);
                 startActivity(snowFall);
             }
         });

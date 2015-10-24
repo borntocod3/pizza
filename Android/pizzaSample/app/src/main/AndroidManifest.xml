@@ -29,6 +29,10 @@
             android:label="@string/title_activity_snowfall">
 
         </activity>
+        <activity
+            android:name=".SnowFall"
+            android:label="@string/title_activity_snowfall">
+        </activity>
     </application>
 
 </manifest>
