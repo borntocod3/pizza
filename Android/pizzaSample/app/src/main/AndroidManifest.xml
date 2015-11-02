@@ -24,11 +24,7 @@
             android:name=".HologramActivity"
             android:label="@string/title_activity_hologram" >
         </activity>
-        <activity
-            android:name=".SnowFallActivity"
-            android:label="@string/title_activity_snowfall">
 
-        </activity>
         <activity
             android:name=".SnowFall"
             android:label="@string/title_activity_snowfall">

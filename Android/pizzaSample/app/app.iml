@@ -55,7 +55,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/aidl" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/libs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
@@ -94,16 +93,15 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="zxing-android-legacy-2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="dialogplus-1.10" level="project" />
-    <orderEntry type="library" exported="" name="zxing-android-minimal-2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
-    <orderEntry type="library" exported="" name="zxing-android-integration-2.0.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.1" level="project" />
+    <orderEntry type="library" exported="" name="zxing-android-legacy-2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="zxing-android-integration-2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
-    <orderEntry type="module" module-name="andEngine" exported="" />
+    <orderEntry type="library" exported="" name="zxing-android-minimal-2.0.0" level="project" />
     <orderEntry type="module" module-name="andEnginePhysicsBox2DExtension" exported="" />
-    <orderEntry type="library" exported="" name="org.apache.http.legacy-android-23" level="project" />
+    <orderEntry type="module" module-name="andEngine" exported="" />
   </component>
 </module>
